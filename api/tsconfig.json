@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["*.ts"],
+  "include": ["*.ts", "handler.mjs"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext"
