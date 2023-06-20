@@ -1,7 +1,7 @@
 import React from 'react';
-import { AIRoot, ChatMessage, conversationAtom, modelCallInProgress } from './ai.js';
+import { AIRoot, ChatMessage, conversationAtom, modelCallInProgress } from './ai';
 import { useAtom } from 'jotai';
-import ResultContainer from '../ResultContainer.js';
+import ResultContainer from '../ResultContainer';
 import classnames from 'classnames';
 
 function DebugConversation() {

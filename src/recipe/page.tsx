@@ -3,8 +3,8 @@ import * as AI from 'ai-jsx/react';
 import { UICompletion } from 'ai-jsx/react/completion';
 import { useState, ReactNode } from 'react';
 import { ChatCompletion, UserMessage } from 'ai-jsx/core/completion';
-import ResultContainer from '../ResultContainer.js';
-import InputPrompt from '../InputPrompt.js';
+import ResultContainer from '../ResultContainer';
+import InputPrompt from '../InputPrompt';
 import { atom, useAtom } from 'jotai';
 
 const selectedIngredientsAtom = atom(new Set<any>());

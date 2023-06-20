@@ -3,7 +3,7 @@ import * as AI from 'ai-jsx/react';
 import React, { useState } from 'react';
 import { AssistantMessage, ChatCompletion, SystemMessage, UserMessage } from 'ai-jsx/core/completion';
 import { useList } from 'react-use';
-import ResultContainer from '../ResultContainer.js';
+import ResultContainer from '../ResultContainer';
 
 function ConversationItem({
   responseType,

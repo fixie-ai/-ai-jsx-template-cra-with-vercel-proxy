@@ -2,9 +2,9 @@
 import * as AI from 'ai-jsx/react';
 import * as React from 'react';
 import { useState } from 'react';
-import { DocsAgent } from './ai.js';
+import { DocsAgent } from './ai';
 import { useList } from 'react-use';
-import ResultContainer from '../ResultContainer.js';
+import ResultContainer from '../ResultContainer';
 
 function ConversationItem({
   responseType,

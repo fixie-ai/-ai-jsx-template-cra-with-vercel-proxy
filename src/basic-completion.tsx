@@ -1,10 +1,10 @@
 /** @jsxImportSource ai-jsx/react */
 import * as AI from 'ai-jsx/react';
-import ResultContainer from './ResultContainer.js';
-import InputPrompt from './InputPrompt.js';
+import ResultContainer from './ResultContainer';
+import InputPrompt from './InputPrompt';
 import { ChatCompletion, UserMessage } from 'ai-jsx/core/completion';
 import { useState } from 'react';
-import { UseHostOpenAIProxy } from './ai.js';
+import { UseHostOpenAIProxy } from './ai';
 
 export default function BasicCompletion() {
   const [query, setQuery] = useState('wild weasels');
