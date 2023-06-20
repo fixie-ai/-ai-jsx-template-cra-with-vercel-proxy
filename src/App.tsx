@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './layout';
+import BasicCompletion from './basic-completion';
+import { ChooseYourOwnAdventure } from './choose-your-adventure';
+import RecipeWrapper from './recipe/page';
+import { BasicChat } from './basic-chat';
+import { DocsChat } from './docs-chat';
+
+const router = createBrowserRouter([
+  {
+    path: '',
+    element: <RootLayout />,
+    children: [
+      {
+        path: '',
+        element: <ChooseYourOwnAdventure />,
+      },
+      {
+        path: '/basic-completion',
+        element: <BasicCompletion />,
+      },
+      {
+        path: '/basic-chat',
+        element: <BasicChat />,
+      },
+      {
+        path: '/docs-chat',
+        element: <DocsChat />,
+      },
+      {
+        path: '/recipe',
+        element: <RecipeWrapper />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
