@@ -8,6 +8,7 @@ import { memo } from 'ai-jsx/core/memoize';
 import { OpenAI } from 'ai-jsx/lib/openai';
 import { atom, useAtom } from 'jotai';
 import _ from 'lodash';
+import { UseHostOpenAIProxy } from '../ai';
 
 interface BaseChatMessage {
   type: string;
@@ -91,7 +92,7 @@ function AIComponent() {
   const [, setCallInProgress] = useAtom(modelCallInProgress);
   const isInProgressRef = useRef(false);
 
-  const children = memo(<ButtonEnabledAgent conversation={conversation} />);
+  const children = memo(<UseHostOpenAIProxy><ButtonEnabledAgent conversation={conversation} /></UseHostOpenAIProxy>);
   const when = !conversation.length || _.last(conversation)?.type === 'user';
 
   const lastMessageType = _.last(conversation)?.type;

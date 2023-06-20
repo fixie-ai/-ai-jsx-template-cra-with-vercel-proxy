@@ -6,6 +6,7 @@ import { ChatCompletion, UserMessage } from 'ai-jsx/core/completion';
 import ResultContainer from '../ResultContainer';
 import InputPrompt from '../InputPrompt';
 import { atom, useAtom } from 'jotai';
+import { UseHostOpenAIProxy } from '../ai';
 
 const selectedIngredientsAtom = atom(new Set<any>());
 
@@ -79,6 +80,7 @@ export default function RecipeWrapper() {
 
       <ResultContainer title={`AI comes up with a recipe for ${query}`}>
         <AI.jsx>
+          <UseHostOpenAIProxy>
           <UICompletion
             example={
               <Recipe>
@@ -102,6 +104,7 @@ export default function RecipeWrapper() {
               <UserMessage>Give me a recipe for {query}.</UserMessage>
             </ChatCompletion>
           </UICompletion>
+          </UseHostOpenAIProxy>
         </AI.jsx>
       </ResultContainer>
     </>

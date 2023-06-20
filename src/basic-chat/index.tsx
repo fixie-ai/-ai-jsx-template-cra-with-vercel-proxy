@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { AssistantMessage, ChatCompletion, SystemMessage, UserMessage } from 'ai-jsx/core/completion';
 import { useList } from 'react-use';
 import ResultContainer from '../ResultContainer';
+import { UseHostOpenAIProxy } from '../ai';
 
 function ConversationItem({
   responseType,
@@ -52,7 +53,7 @@ export function BasicChat() {
     const index = messages.length + 1;
     pushMessage(message, '⎕');
     setCallInProgress(true);
-    await AI.createRenderContext().render(<ChatAgent conversation={[...messages, message]} />, {
+    await AI.createRenderContext().render(<UseHostOpenAIProxy><ChatAgent conversation={[...messages, message]} /></UseHostOpenAIProxy>, {
       map: (frame: string) => {
         updateMessage(index, frame);
       },

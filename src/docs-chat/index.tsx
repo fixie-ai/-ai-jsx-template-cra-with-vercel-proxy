@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { DocsAgent } from './ai';
 import { useList } from 'react-use';
 import ResultContainer from '../ResultContainer';
+import { UseHostOpenAIProxy } from '../ai';
 
 function ConversationItem({
   responseType,
@@ -35,9 +36,11 @@ const AgentResponse = React.memo(function AgentResponse({
 }) {
   return (
     <ConversationItem responseType="bot">
+      <UseHostOpenAIProxy>
       <AI.jsx onStreamStart={() => setCallInProgress(true)} onStreamEnd={() => setCallInProgress(false)} loading="⎕">
         <DocsAgent question={question} />
       </AI.jsx>
+      </UseHostOpenAIProxy>
     </ConversationItem>
   );
 });
