@@ -1,43 +1,20 @@
-import httpProxy from 'http-proxy';
+import { Configuration, OpenAIApi } from 'openai-edge'
+import { OpenAIStream, StreamingTextResponse } from 'ai'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('OPENAI_API_KEY environment variable must be set');
 }
 
-export default function handler(
-  req,
-  res,
-) {
-  let resEndResolve;
-  let resEndPromise = new Promise(resolve => {
-    resEndResolve = resolve;
-  });
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY
+})
+const openai = new OpenAIApi(config)
 
-  const proxy = httpProxy.createProxy({ target: 'https://api.openai.com', changeOrigin: true, selfHandleResponse: true });
-  proxy.on('proxyRes', (proxyRes, _req, res) => {
-    proxyRes.on('data', res.write.bind(res));
-    proxyRes.on('end', () => {
-      resEndResolve(res.end());
-    });
-  });
-  req.headers.authorization = `Bearer ${process.env.OPENAI_API_KEY}`;
-  proxy.web(req, res);
-  return resEndPromise;
+export const runtime = 'edge'
+
+export async function POST(req) {
+  const reqBody = await req.json()
+  const response = await openai.createChatCompletion(reqBody)
+  const stream = OpenAIStream(response)
+  return new StreamingTextResponse(stream)
 }
-
-// import { createProxyMiddleware } from 'http-proxy-middleware';
-
-// const apiProxy = createProxyMiddleware({
-//   target: 'https://api.openai.com',
-//   changeOrigin: true,
-//   pathRewrite: {
-//     "^/api": "" // strip "/api" from the URL
-//   },
-//   onProxyRes(proxyRes) {
-//   }
-// });
-
-// export default function handler(req, res) {
-//   req.headers.authorization = `Bearer ${process.env.OPENAI_API_KEY}`;
-//   return apiProxy(req, res);
-// };
