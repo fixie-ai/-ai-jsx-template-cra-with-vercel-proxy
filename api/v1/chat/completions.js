@@ -106,12 +106,11 @@
 // }
 
 
-import { OpenAIStream, StreamingTextResponse } from 'ai'
-import { Configuration, OpenAIApi } from 'openai-edge'
+const { OpenAIStream, StreamingTextResponse } = require('ai')
+const { Configuration, OpenAIApi } = require('openai-edge')
 
-export const runtime = 'edge'
-
-export async function POST(req) {
+module.exports.runtime = 'edge';
+module.exports.POST = async function POST(req) {
   const json = await req.json()
   const { messages, previewToken } = json
 

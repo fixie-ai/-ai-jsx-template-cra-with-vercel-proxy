@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["*.ts", "v1/chat/completions.mjs"],
+  "include": ["*.ts", "v1/chat/completions.js"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext"
