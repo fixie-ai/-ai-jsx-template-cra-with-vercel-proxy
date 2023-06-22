@@ -9,7 +9,7 @@ export default function BasicCompletion() {
   const [query, setQuery] = useState('wild weasels');
 
   return (
-    <>
+    <main className="flex min-h-screen flex-col items-start p-24">
       <InputPrompt label="Give me a topic" value={query} setValue={setQuery} />
       <ResultContainer title={`AI writes a poem about ${query}`}>
         <AI.jsx>
@@ -25,6 +25,6 @@ export default function BasicCompletion() {
             </ChatCompletion>
         </AI.jsx>
       </ResultContainer>
-    </>
+    </main>
   );
 }
