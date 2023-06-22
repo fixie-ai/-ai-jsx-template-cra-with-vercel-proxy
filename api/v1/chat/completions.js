@@ -120,14 +120,14 @@ module.exports.POST = async function POST(req) {
 
   const openai = new OpenAIApi(configuration)
 
-  const res = await openai.createChatCompletion({
+  return openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages,
     temperature: 0.7,
     stream: true
   })
 
-  const stream = OpenAIStream(res)
+  // const stream = OpenAIStream(res)
 
-  return new StreamingTextResponse(stream)
+  // return new StreamingTextResponse(stream)
 }
